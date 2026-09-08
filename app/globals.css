@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #322e56;
+  --ink-soft: #716b9e;
+  --accent: #6d5ce8;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-plex), "Apple SD Gothic Neo", sans-serif;
+  --font-serif: var(--font-gowun), "Apple SD Gothic Neo", serif;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-plex), "Apple SD Gothic Neo", sans-serif;
+  min-height: 100dvh;
+  background:
+    radial-gradient(55% 45% at 12% 8%, rgba(186, 166, 255, 0.4), transparent 70%),
+    radial-gradient(50% 40% at 88% 18%, rgba(255, 184, 166, 0.4), transparent 70%),
+    radial-gradient(45% 40% at 50% 95%, rgba(160, 214, 255, 0.35), transparent 70%),
+    linear-gradient(180deg, #f2edff 0%, #fff0e8 100%);
+  background-attachment: fixed;
+}
+
+/* 카테고리별 덱 스킨 */
+.skin-icebreak {
+  background: linear-gradient(150deg, #ffb59d 0%, #fb8a8f 55%, #ef7fae 100%);
+}
+.skin-balance {
+  background: linear-gradient(150deg, #8ed6c0 0%, #7cb4ef 60%, #8f9df1 100%);
+}
+.skin-word {
+  background: linear-gradient(150deg, #b9a9f7 0%, #9384ee 60%, #8b7fe9 100%);
+}
+.skin-custom {
+  background: linear-gradient(150deg, #ffc46b 0%, #ff9d76 55%, #f97f96 100%);
+}
+
+/* 카드 뒷면 도트 패턴 */
+.card-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.55) 1.2px, transparent 1.3px);
+  background-size: 14px 14px;
+}
+
+@keyframes card-flip {
+  from {
+    transform: perspective(1200px) rotateY(-180deg);
+    opacity: 0.4;
+  }
+  to {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+.flip-in {
+  animation: card-flip 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise-in {
+  animation: rise-in 0.5s ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.3s ease both;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-in,
+  .rise-in,
+  .fade-in {
+    animation: none;
+  }
+}
