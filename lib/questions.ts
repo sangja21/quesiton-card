@@ -105,7 +105,7 @@ export const decks: Deck[] = [
   {
     slug: "balance",
     name: "밸런스 게임",
-    tagline: "당신의 선택은? 네 가지 갈림길",
+    tagline: "둘 중 하나만 고른다면? 당신의 선택은",
     icon: "/assets/icon-balance.png",
     mode: "draw",
     skin: "skin-balance",
