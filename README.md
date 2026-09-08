@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 나눔카드
 
-## Getting Started
+모임에서 카드를 뽑아 대화를 시작하는 질문카드 웹앱입니다.
+소그룹·셀 모임에서 폰 하나 돌려가며 쓰는 시나리오에 맞춰 모바일 우선으로 만들었습니다.
 
-First, run the development server:
+> "너희도 성령 안에서 하나님이 거하실 처소가 되기 위하여
+> 그리스도 예수 안에서 함께 지어져 가느니라" — 에베소서 2:22
+
+## 기능
+
+- **아이스브레이킹 (20문항)** — 뒤집힌 카드 그리드에서 탭하면 플립 애니메이션과 함께 질문이 전체화면으로 열립니다. 뽑은 카드는 표시되어 중복되지 않습니다.
+- **밸런스 게임 (4문항)** — 둘 중 하나를 고르는 선택형 질문. 카드에 A vs B 선택지가 함께 표시됩니다.
+- **말씀 나눔 (5문항)** — 랜덤이 아닌 순서 진행형. 말씀 구절과 진행 단계를 보여주며 1번부터 차례로 나눕니다.
+- **나만의 카드** — 카테고리를 골라 질문을 직접 만들면 해당 덱의 카드 사이에 섞여 나옵니다. 밸런스 게임용 질문은 A/B 선택지도 넣을 수 있습니다.
+- **공유 링크** — 만든 질문 전체를 URL에 인코딩해 복사합니다. 링크를 받은 사람은 접속만 하면 같은 덱으로 바로 뽑을 수 있고, 자기 카드로 저장할 수도 있습니다.
+- 뽑은 카드 기록과 내 질문은 모두 브라우저 localStorage에 저장됩니다. **서버·DB가 없습니다.**
+
+## 기술 스택
+
+- [Next.js](https://nextjs.org) (App Router) + React + TypeScript
+- Tailwind CSS 4
+- 서체: [고운바탕](https://fonts.google.com/specimen/Gowun+Batang) (질문), IBM Plex Sans KR (UI)
+- 전 페이지 정적 생성 — 어디든 정적 호스팅으로 배포 가능
+
+## 시작하기
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 질문 바꾸기
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+모든 기본 질문은 [`lib/questions.ts`](lib/questions.ts) 한 파일에 있습니다.
+텍스트를 수정하거나 항목을 추가·삭제하면 덱에 바로 반영됩니다.
+말씀 나눔 덱의 구절(`verse`, `verseRef`)도 같은 파일에서 바꿀 수 있습니다.
 
-## Learn More
+배포 없이 질문만 바꾸고 싶다면 앱의 **나만의 카드**에서 만들어 공유 링크로 돌리는 방법도 있습니다.
 
-To learn more about Next.js, take a look at the following resources:
+## 구조
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+  page.tsx            홈 (덱 선택)
+  deck/[slug]/        덱 페이지 (정적 생성)
+  custom/             나만의 카드 관리 + 공유 링크 수신
+components/
+  DeckView.tsx        카드 그리드 · 플립 오버레이 · 순서 진행 UI
+  CustomView.tsx      내 질문 편집기 · 공유받은 덱
+lib/
+  questions.ts        질문 데이터 (여기만 고치면 됨)
+  share.ts            질문 목록 ↔ URL-safe base64 인코딩
+public/assets/        덱 아이콘 · 로고 (3D 클레이 스타일)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 크레딧
 
-## Deploy on Vercel
+made by **VineBranch**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+카드형 질문 앱의 인터랙션 컨셉은 [QuestionCard](https://apps.apple.com/app/questioncard) 앱에서 영감을 받았습니다.
+질문 콘텐츠와 코드는 이 저장소에서 직접 작성했습니다.
