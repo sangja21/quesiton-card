@@ -59,5 +59,5 @@ public/assets/        덱 아이콘 · 로고 (3D 클레이 스타일)
 
 made by **VineBranch**
 
-카드형 질문 앱의 인터랙션 컨셉은 [QuestionCard](https://apps.apple.com/app/questioncard) 앱에서 영감을 받았습니다.
-질문 콘텐츠와 코드는 이 저장소에서 직접 작성했습니다.
+질문 콘텐츠는 모두 VineBranch가 직접 만든 자체 콘텐츠이며, 코드도 이 저장소에서 직접 작성했습니다.
+"카드를 뽑아 대화를 시작한다"는 인터랙션 컨셉만 카드형 질문 앱들에서 영감을 받았습니다.
