@@ -60,14 +60,19 @@ export default function Home() {
         </Link>
       </div>
 
-      <blockquote className="mt-auto pt-14 text-center">
-        <p className="font-serif text-sm leading-relaxed text-ink-soft">
-          “{verse}”
+      <footer className="mt-auto pt-14 text-center">
+        <blockquote>
+          <p className="font-serif text-sm leading-relaxed text-ink-soft">
+            “{verse}”
+          </p>
+          <cite className="mt-2 block text-xs not-italic text-ink-soft/70">
+            {verseRef}
+          </cite>
+        </blockquote>
+        <p className="mt-8 text-[11px] font-medium tracking-widest text-ink-soft/50">
+          made by VineBranch
         </p>
-        <cite className="mt-2 block text-xs not-italic text-ink-soft/70">
-          {verseRef}
-        </cite>
-      </blockquote>
+      </footer>
     </main>
   );
 }
